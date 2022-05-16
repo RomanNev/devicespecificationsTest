@@ -18,7 +18,7 @@ public class TestBase {
 
         String login = System.getProperty("login");
         String password = System.getProperty("password");
-        Configuration.remote = "https://" + login + ":" + password + "@" + System.getProperty("remoteBrowser");
+        //Configuration.remote = "https://" + login + ":" + password + "@" + System.getProperty("remoteBrowser");
 
         Configuration.baseUrl = "https://www.devicespecifications.com";
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");

@@ -3,6 +3,8 @@ package tests;
 import helpers.AllureAttachments;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -28,19 +30,39 @@ public class DeviceSpecificationsTests extends TestBase {
         });
     }
 
-    @Test
-    @DisplayName("Page title should have header text")
-    void titleTest() {
-        step("Open url 'https://www.devicespecifications.com'", () ->
-            open("https://www.devicespecifications.com"));
 
-        step("Page title should have text 'DeviceSpecifications - Mobile device specifications, comparisons, news, user reviews and ratings'", () -> {
-            String expectedTitle = "DeviceSpecifications - Mobile device specifications, comparisons, news, user reviews and ratings";
+    @CsvSource(value = {
+            ".en | DeviceSpecifications - Mobile device specifications, comparisons, news, user reviews and ratings",
+            ".de | DeviceSpecifications - Spezifikationen der Mobilgeräte, Vergleiche, Nachrichten, Kundenrezensionen und Bewertungen",
+            ".es | DeviceSpecifications - características y especificaciones de dispositivos móviles, comparaciones, novedades, opiniones de los usuarios y valoraciones",
+            ".fr | DeviceSpecifications - Caractéristiques de dispositifs mobiles, comparaisons, actualités, avis d'utilisateurs",
+            ".it | DeviceSpecifications - caratteristiche e specifiche di dispositivi mobili, confronti, notizie, valutazioni e opinioni degli utenti",
+            ".ru | DeviceSpecifications - характеристики и спецификации мобильных устройств, сравнения, новости, оценки и отзывы потребителей",
+            ".bg | DeviceSpecifications - Характеристики и спецификации на мобилни устройства, сравнения, новини, потребителски мнения и оценки",
+            ".tr | DeviceSpecifications - Mobil cihaz özellikleri ve spesifikasyonları, karşılaştırmalar, haberler, kullanıcı yorumları ve değerlendirmeleri",
+
+    },
+            delimiter = '|'
+    )
+
+    @ParameterizedTest(name = "проверка смены языка ресурса \"{0}\" ")
+    void changeLangTest(String lang, String titleLang) {
+        step("Открыть 'https://www.devicespecifications.com'", () -> {
+            open("");
+        });
+
+        step("Сменить язык на  \"{0}\"", () -> {
+            $(lang).click();
+        });
+
+        step("Проверить успешную смену языка", () -> {
+            String expectedTitle = titleLang;
             String actualTitle = title();
 
             assertThat(actualTitle).isEqualTo(expectedTitle);
         });
     }
+
 
     @Test
     @DisplayName("Page console log should not have errors")
