@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
@@ -60,6 +63,26 @@ public class DeviceSpecificationsTests extends TestBase {
             String actualTitle = title();
 
             assertThat(actualTitle).isEqualTo(expectedTitle);
+        });
+    }
+//[style="float: left; line-height: 40px;"]
+    @Test
+    @DisplayName("Открытие списка устройств бренда")
+    void searchDeviceTest() {
+        step("Открыть 'https://www.devicespecifications.com'", () -> {
+            open("");
+        });
+
+        step("Ввести в строку поиска название устройства", () -> {
+            $("#search").setValue("Google Pixel 6a").pressEnter();
+        });
+
+        step("Выбрать первое устройство в выдаче", () -> {
+            $(".search-result-selected ").$(byText("Google Pixel 6a")).click();
+        });
+
+        step("Проверить открытие страницы с девайсом", () -> {
+            $("header:nth-child(2) > h1").shouldHave(text("Google Pixel 6a - Specifications"));
         });
     }
 
