@@ -65,7 +65,7 @@ public class DeviceSpecificationsTests extends TestBase {
             assertThat(actualTitle).isEqualTo(expectedTitle);
         });
     }
-//[style="float: left; line-height: 40px;"]
+
     @Test
     @DisplayName("Открытие списка устройств бренда")
     void searchDeviceTest() {
@@ -83,6 +83,52 @@ public class DeviceSpecificationsTests extends TestBase {
 
         step("Проверить открытие страницы с девайсом", () -> {
             $("header:nth-child(2) > h1").shouldHave(text("Google Pixel 6a - Specifications"));
+        });
+    }
+
+    @Test
+    @DisplayName("Открытие списка устройств бренда")
+    void comparisonDeviceTest() {
+        step("Открыть 'https://www.devicespecifications.com'", () -> {
+            open("");
+        });
+
+        step("Ввести в строку поиска название первого устройства", () -> {
+            $("#search").setValue("Google Pixel 6a").pressEnter();
+        });
+
+        step("Выбрать первое устройство в выдаче", () -> {
+            $(".search-result-selected ").$(byText("Google Pixel 6a")).click();
+        });
+
+        step("Добавить первое устройство в сравнение", () -> {
+            $("a.button:nth-child(31)").click();
+        });
+
+        step("Ввести в строку поиска название второго устройства", () -> {
+            $("#search").setValue("Google Pixel 6").pressEnter();
+
+        });
+
+        step("Выбрать второе устройство в выдаче", () -> {
+            $(".search-result-selected ").$(byText("Google Pixel 6")).click();
+        });
+
+        step("Добавить второе устройство в сравнение", () -> {
+            $("a.button:nth-child(31)").click();
+        });
+
+        step("Перейти на страницу сравнения", () -> {
+            $("#comparison-button").click();
+        });
+
+        step("Проверить, что выбранные устройства есть на странице сравнения", () -> {
+            $("header:nth-child(3) > h1").shouldHave(
+                    text("Comparison between:"),
+                    text("Google Pixel 6a"),
+                    text("Google Pixel 6")
+            );
+
         });
     }
 
