@@ -107,7 +107,6 @@ public class DeviceSpecificationsTests extends TestBase {
 
         step("Ввести в строку поиска название второго устройства", () -> {
             $("#search").setValue("Google Pixel 6").pressEnter();
-
         });
 
         step("Выбрать второе устройство в выдаче", () -> {
