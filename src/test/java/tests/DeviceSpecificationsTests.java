@@ -87,7 +87,7 @@ public class DeviceSpecificationsTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Открытие списка устройств бренда")
+    @DisplayName("Сравнение двух устройств")
     void comparisonDeviceTest() {
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
@@ -102,7 +102,7 @@ public class DeviceSpecificationsTests extends TestBase {
         });
 
         step("Добавить первое устройство в сравнение", () -> {
-            $("a.button:nth-child(31)").click();
+            $("a.button span .image-arrows").click();
         });
 
         step("Ввести в строку поиска название второго устройства", () -> {
@@ -115,7 +115,7 @@ public class DeviceSpecificationsTests extends TestBase {
         });
 
         step("Добавить второе устройство в сравнение", () -> {
-            $("a.button:nth-child(31)").click();
+            $("a.button span .image-arrows").click();
         });
 
         step("Перейти на страницу сравнения", () -> {
