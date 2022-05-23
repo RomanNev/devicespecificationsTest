@@ -8,8 +8,9 @@ repositories {
 }
 
 def allureVersion = "2.14.0",
-    selenideVersion = "5.24.0",
-    junitVersion = "5.7.2"
+     selenideVersion = "5.24.0",
+        junitVersion = "5.7.2",
+        ownerVersion = "1.0.12"
 
 allure {
     version = allureVersion
@@ -25,6 +26,7 @@ dependencies {
     testImplementation(
             "org.aspectj:aspectjweaver:1.9.6",
             'org.junit.jupiter:junit-jupiter:5.8.2',
+            "org.aeonbits.owner:owner:$ownerVersion",
             "com.codeborne:selenide:$selenideVersion",
             "io.qameta.allure:allure-selenide:$allureVersion",
             "io.rest-assured:rest-assured:4.3.1",

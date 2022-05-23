@@ -6,10 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
@@ -67,7 +64,7 @@ public class DeviceSpecificationsTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Открытие списка устройств бренда")
+    @DisplayName("Проверка добавления устройств в сравнение")
     void searchDeviceTest() {
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
