@@ -12,7 +12,7 @@ public interface ProjectConfig extends Config {
     String browser();
 
     @Key("browserVersion")
-    @DefaultValue("101.0")
+    @DefaultValue("100")
     String browserVersion();
 
     @Key("browserSize")
@@ -26,7 +26,5 @@ public interface ProjectConfig extends Config {
     @Key("timeout")
     @DefaultValue("4000")
     Integer timeout();
-
-
 
 }
