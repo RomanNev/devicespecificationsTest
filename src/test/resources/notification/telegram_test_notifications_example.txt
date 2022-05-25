@@ -1,0 +1,24 @@
+// Template
+java \
+"-DprojectName=${PROJECT_NAME}" \
+"-Denv=${ENVIRONMENT}" \
+"-DreportLink=${BUILD_URL}" \
+"-Dcomm=Any comment here" \
+"-Dconfig.file=${PATH_TO_FILE}" \
+-jar allure-notifications-3.1.2.jar
+
+
+// Jenkins
+java \
+"-DprojectName=${PROJECT_NAME}" \
+"-Denv=${ENVIRONMENT}" \
+"-DreportLink=${BUILD_URL}" \
+"-Dcomm=Any comment here" \
+"-Dconfig.file=notification/telegram_config.json" \
+-jar java "-DprojectName=Local test run" "-Denv=PROD" "-DreportLink=qa.guru/" "-Dcomm=Any comment here" "-Dconfig.file=src/test/resources/notification/telegram_config.json" -jar src/test/resources/notification/allure-notifications-3.1.2.jar
+
+
+
+
+/ Local in one line
+java "-DprojectName=Local test run" "-Denv=PROD" "-DreportLink=qa.guru/" "-Dcomm=Any comment here" "-Dconfig.file=src/test/resources/notification/telegram_config.json" -jar src/test/resources/notification/allure-notifications-3.1.2.jar

@@ -64,7 +64,7 @@ public class DeviceSpecificationsTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Проверка добавления устройств в сравнение")
+    @DisplayName("Поиск определенного девайса")
     void searchDeviceTest() {
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
