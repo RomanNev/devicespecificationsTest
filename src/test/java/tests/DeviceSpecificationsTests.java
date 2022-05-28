@@ -115,6 +115,7 @@ public class DeviceSpecificationsTests extends TestBase {
         });
 
         step("Перейти на страницу сравнения", () -> {
+            $("#comparison-button").scrollIntoView(false);
             $("#comparison-button").click();
         });
 
