@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static io.qameta.allure.Allure.step;
@@ -84,59 +84,41 @@ public class DeviceSpecificationsTests extends TestBase {
     }
 
     @Test
-    @DisplayName("Сравнение двух устройств")
+    @DisplayName("Добавление и удаление устройста из сравнения")
     void comparisonDeviceTest() {
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
         });
 
-        step("Ввести в строку поиска название первого устройства", () -> {
+        step("Ввести в строку поиска название  устройства", () -> {
             $("#search").setValue("Google Pixel 6a").pressEnter();
         });
 
-        step("Выбрать первое устройство в выдаче", () -> {
+        step("Выбрать устройство в выдаче", () -> {
             $(".search-result-selected ").$(byText("Google Pixel 6a")).click();
         });
 
-        step("Добавить первое устройство в сравнение", () -> {
+        step("Добавить  устройство в сравнение", () -> {
             $("a.button span .image-arrows").click();
         });
 
-        step("Ввести в строку поиска название второго устройства", () -> {
-            $("#search").setValue("Google Pixel 6").pressEnter();
+        step("Удвлить устройство из сравнения", () -> {
+            $("span.icon-button.icon-x").click();
         });
 
-        step("Выбрать второе устройство в выдаче", () -> {
-            $(".search-result-selected ").$(byText("Google Pixel 6")).click();
-        });
-
-        step("Добавить второе устройство в сравнение", () -> {
-            $("a.button span .image-arrows").click();
-        });
-
-        step("Перейти на страницу сравнения", () -> {
-            $("#comparison-button").scrollIntoView(false);
-            $("#comparison-button").click();
-        });
-
-        step("Проверить, что выбранные устройства есть на странице сравнения", () -> {
-            $("header:nth-child(3) > h1").shouldHave(
-                    text("Comparison between:"),
-                    text("Google Pixel 6a"),
-                    text("Google Pixel 6")
-            );
-
+        step("Устройство удалено из сравнения", () -> {
+            $(".comparison-container").shouldBe(hidden);
+            $("span.icon-button.icon-x").shouldBe(hidden);
         });
     }
 
-
     @Test
-    @DisplayName("Page console log should not have errors")
+    @DisplayName("В консоли страницы не должно быть ошибок")
     void consoleShouldNotHaveErrorsTest() {
-        step("Open url 'https://www.devicespecifications.com'", () ->
+        step("Открыть 'https://www.devicespecifications.com'", () ->
             open("https://www.devicespecifications.com"));
 
-        step("Console logs should not contain text 'SEVERE'", () -> {
+        step("Журналы консоли не должны содержать текст 'SEVERE'", () -> {
             String consoleLogs = AllureAttachments.getConsoleLogs();
             String errorText = "SEVERE";
 
