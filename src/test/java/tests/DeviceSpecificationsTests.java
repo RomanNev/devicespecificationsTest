@@ -17,14 +17,17 @@ public class DeviceSpecificationsTests extends TestBase {
     @Test
     @DisplayName("Открытие списка устройств бренда")
     void openBrandListTest() {
+        //Arrange
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
         });
 
+        // Act
         step("Перейти в бренд Google", () -> {
             $(".brand-listing-container-frontpage").find(byText("Google")).click();
         });
 
+        // Assert
         step("Проверить успешное открытие страницы со списком устройств бренда", () -> {
            $("nav:nth-child(1) > span:nth-child(1) > span:nth-child(2) > span:nth-child(1)").shouldHave(text("Google"));
         });
@@ -47,14 +50,17 @@ public class DeviceSpecificationsTests extends TestBase {
 
     @ParameterizedTest(name = "проверка смены языка ресурса \"{0}\" ")
     void changeLangTest(String lang, String titleLang) {
+        //Arrange
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
         });
 
+        // Act
         step("Сменить язык на  \"{0}\"", () -> {
             $(lang).click();
         });
 
+        // Assert
         step("Проверить успешную смену языка", () -> {
             String expectedTitle = titleLang;
             String actualTitle = title();
@@ -66,10 +72,12 @@ public class DeviceSpecificationsTests extends TestBase {
     @Test
     @DisplayName("Поиск определенного девайса")
     void searchDeviceTest() {
+        //Arrange
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
         });
 
+        // Act
         step("Ввести в строку поиска название устройства", () -> {
             $("#search").setValue("Google Pixel 6a").pressEnter();
         });
@@ -78,6 +86,7 @@ public class DeviceSpecificationsTests extends TestBase {
             $(".search-result-selected ").$(byText("Google Pixel 6a")).click();
         });
 
+        // Assert
         step("Проверить открытие страницы с девайсом", () -> {
             $("header:nth-child(2) > h1").shouldHave(text("Google Pixel 6a - Specifications"));
         });
@@ -86,10 +95,12 @@ public class DeviceSpecificationsTests extends TestBase {
     @Test
     @DisplayName("Добавление и удаление устройста из сравнения")
     void comparisonDeviceTest() {
+        //Arrange
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
         });
 
+        // Act
         step("Ввести в строку поиска название  устройства", () -> {
             $("#search").setValue("Google Pixel 6a").pressEnter();
         });
@@ -106,6 +117,7 @@ public class DeviceSpecificationsTests extends TestBase {
             $("span.icon-button.icon-x").click();
         });
 
+        // Assert
         step("Устройство удалено из сравнения", () -> {
             $(".comparison-container").shouldBe(hidden);
             $("span.icon-button.icon-x").shouldBe(hidden);
@@ -116,10 +128,12 @@ public class DeviceSpecificationsTests extends TestBase {
     @Test
     @DisplayName("Проверка suggest menu")
     void checkSuggestMenuTest() {
+        //Arrange
         step("Открыть 'https://www.devicespecifications.com'", () -> {
             open("");
         });
 
+        // Act
         step("Ввести в строку поиска название  устройства", () -> {
             $("#search").setValue("Google Pixel 6a").pressEnter();
         });
@@ -132,15 +146,9 @@ public class DeviceSpecificationsTests extends TestBase {
             $(".image-pencil").click();
         });
 
-
+        // Assert
         step("Проверить содержимое suggest menu", () -> {
-            $("#field_text[name=field_text]").shouldHave(
-                    text("Provide information about," +
-                            " which of the published data you want " +
-                            "to be edited as well as a reliable source," +
-                            " which confirms the accuracy " +
-                            "of the information you suggest")
-            );
+            $(".caption").shouldHave(text("Suggest an edit"));
             assertThat($("#submit-button").exists()).isEqualTo(true);
 
         });
@@ -150,13 +158,16 @@ public class DeviceSpecificationsTests extends TestBase {
     @Test
     @DisplayName("В консоли страницы не должно быть ошибок")
     void consoleShouldNotHaveErrorsTest() {
+        //Arrange
         step("Открыть 'https://www.devicespecifications.com'", () ->
             open("https://www.devicespecifications.com"));
 
+        // Act
         step("Журналы консоли не должны содержать текст 'SEVERE'", () -> {
             String consoleLogs = AllureAttachments.getConsoleLogs();
             String errorText = "SEVERE";
 
+            // Assert
             assertThat(consoleLogs).doesNotContain(errorText);
         });
     }
