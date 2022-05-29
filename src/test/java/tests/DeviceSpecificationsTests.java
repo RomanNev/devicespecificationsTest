@@ -113,7 +113,7 @@ public class DeviceSpecificationsTests extends TestBase {
             $("a.button span .image-arrows").click();
         });
 
-        step("Удвлить устройство из сравнения", () -> {
+        step("Удалить устройство из сравнения", () -> {
             $("span.icon-button.icon-x").click();
         });
 

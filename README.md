@@ -6,7 +6,10 @@
 - <a href="#технологии-и-инструменты">Технологии и инструменты</a>
 - <a href="#реализованные-проверки">Реализованные проверки</a>
 - <a href="#запуск-из-терминала">Запуск из терминала</a>
+- <a href="#сборка-в-Jenkins">Сборка в Jenkins</a>
+- <a href="#shinto_shrine-allure-отчет">Allure отчет</a>
 - <a href="#отчет-в-telegram">Отчет в Telegram</a>
+- <a href="#видео-примеры-прохождения-тестов">Видео пример прохождения тестов</a>
 
 
 ## Технологии и инструменты
@@ -32,21 +35,51 @@
 - Проверка отсутсвия ошибок в консоли
 
 
-
-
-##  Запуск из терминала
-
-```bash
-gradle clean test -Drun=remote
-```
-
+## Локальный запуск из терминала
 ```bash
 gradle clean test -Drun=local
 ```
+
+## Удаленный запуск
+
+```bash
+clean test  
+-Dbrowser=${browser} 
+-DbrowserVersion=${browserVersion} 
+-DbrowserSize=${browserSize} 
+-DremoteDriverUrl=${remoteDriverUrl}
+```
+
+## :Сборка в Jenkins
+### <a target="_blank" href="https://jenkins.autotests.cloud/job/011-katana_sword_party-13-autotests/">Сборка в Jenkins</a>
+<p align="center">
+<img title="Jenkins Dashboard" src="images/screenshots/jenkins-dashboard.png">
+</p>
+
+## :Allure отчет
+- ### Главный экран отчета
+<p align="center">
+<img title="Allure Overview Dashboard" src="images/screenshots/allure-main-page.png">
+</p>
+
+- ### Страница с проведенными тестами
+<p align="center">
+<img title="Allure Test Page" src="images/screenshots/allure-test-page.png">
+</p>
+
+
+- ### График
+<p align="center">
+<img title="Allure Test Page" src="images/screenshots/allure-test-dashboard.png">
+</p>
 
 ## Отчет в Telegram
 <p align="center">
 <img title="Telegram notification message" src="images/screenshots/telegram-notification.png">
 </p>
 
-
+## :Видео пример прохождения тестов
+> Видео прилагается к каджому тесту
+<p align="center">
+  <img title="Selenoid Video" src="images/gif/test-run.gif">
+</p>
