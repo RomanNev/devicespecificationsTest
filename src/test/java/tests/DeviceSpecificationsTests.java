@@ -112,6 +112,41 @@ public class DeviceSpecificationsTests extends TestBase {
         });
     }
 
+
+    @Test
+    @DisplayName("Проверка suggest menu")
+    void checkSuggestMenuTest() {
+        step("Открыть 'https://www.devicespecifications.com'", () -> {
+            open("");
+        });
+
+        step("Ввести в строку поиска название  устройства", () -> {
+            $("#search").setValue("Google Pixel 6a").pressEnter();
+        });
+
+        step("Выбрать устройство в выдаче", () -> {
+            $(".search-result-selected ").$(byText("Google Pixel 6a")).click();
+        });
+
+        step("Открыть suggest menu", () -> {
+            $(".image-pencil").click();
+        });
+
+
+        step("Проверить содержимое suggest menu", () -> {
+            $("#field_text[name=field_text]").shouldHave(
+                    text("Provide information about," +
+                            " which of the published data you want " +
+                            "to be edited as well as a reliable source," +
+                            " which confirms the accuracy " +
+                            "of the information you suggest")
+            );
+            assertThat($("#submit-button").exists()).isEqualTo(true);
+
+        });
+    }
+
+
     @Test
     @DisplayName("В консоли страницы не должно быть ошибок")
     void consoleShouldNotHaveErrorsTest() {
