@@ -7,7 +7,7 @@
 - <a href="#реализованные-проверки">Реализованные проверки</a>
 - <a href="#запуск-из-терминала">Запуск из терминала</a>
 - <a href="#сборка-в-Jenkins">Сборка в Jenkins</a>
-- <a href="#shinto_shrine-allure-отчет">Allure отчет</a>
+- <a href="#allure-отчет">Allure отчет</a>
 - <a href="#отчет-в-telegram">Отчет в Telegram</a>
 - <a href="#видео-примеры-прохождения-тестов">Видео пример прохождения тестов</a>
 
@@ -26,7 +26,7 @@
 <img width="6%" title="Telegram" src="images/logo/Telegram.svg">
 </p>
 
-##  Реализованные проверки
+## Реализованные проверки
 - Открытие списка устройств бренда
 - Смена языка ресурса (Параметризированные тесты)
 - Поиск определенного девайса
@@ -34,13 +34,13 @@
 - Проверка suggest menu
 - Проверка отсутсвия ошибок в консоли
 
-
-## Локальный запуск из терминала
+## Запуск из терминала
+### Локальный запуск 
 ```bash
 gradle clean test -Drun=local
 ```
 
-## Удаленный запуск
+### Удаленный запуск
 
 ```bash
 clean test  
@@ -66,7 +66,6 @@ clean test
 <p align="center">
 <img title="Allure Test Page" src="images/screenshots/allure-test-page.png">
 </p>
-
 
 - ### График
 <p align="center">
